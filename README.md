@@ -1,6 +1,7 @@
 # To-do list : to-do list!
 
-To-do list : to-do list! was designed to manage check list with 3 status: To Do, Doing and Done
+To-do list : to-do list! was designed to manage check list with 3 status: To Do, Doing and Done.
+
 Visit at: https://to-do-list-c133c.firebaseapp.com/
 
 ## Installation
