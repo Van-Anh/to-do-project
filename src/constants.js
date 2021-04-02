@@ -19,3 +19,21 @@ export const LIST_TO_DO_STATUS = [
     text: 'Done',
   },
 ];
+
+export const ITEM_PRIORITIES = {
+  HIGH: {
+    text: 'High priority',
+    value: 'HIGH',
+    color: '#E53E3E',
+  },
+  MEDIUM: {
+    text: 'Medium priority',
+    value: 'MEDIUM',
+    color: '#3182CE',
+  },
+  LOW: {
+    text: 'Low priority',
+    value: 'LOW',
+    color: '#ECC94B',
+  },
+};

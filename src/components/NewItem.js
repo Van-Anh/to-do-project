@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Box, Input, Button, Textarea, Text } from '@chakra-ui/react';
-
+import { Box, Button, Textarea } from '@chakra-ui/react';
+import { ITEM_PRIORITIES } from '../constants';
 class NewItem extends Component {
   state = {
     title: '',
@@ -10,10 +10,16 @@ class NewItem extends Component {
     this.setState({ title: e.target.value });
   };
 
+  onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      this._onAdd();
+    }
+  };
+
   _onAdd = () => {
     const { onAdd } = this.props;
     const { title } = this.state;
-    onAdd({ title });
+    onAdd({ title, description: '', priority: ITEM_PRIORITIES.MEDIUM.value });
   };
 
   render() {
@@ -27,6 +33,7 @@ class NewItem extends Component {
           value={title}
           bg="white"
           boxShadow="0 1px 0 rgb(9 30 66 / 25%)"
+          onKeyDown={this.onKeyDown}
         />
         <Box d="flex" justifyContent="flex-end" mt="0.51rem">
           <Button

@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { Box, Text, IconButton } from '@chakra-ui/react';
 import { Draggable } from 'react-beautiful-dnd';
 import { CloseIcon } from '@chakra-ui/icons';
-
+import { ITEM_PRIORITIES } from '../constants';
 class Item extends Component {
   state = {};
 
-  _onDelete = () => {
-    const { onDeteteItem, value, type } = this.props;
-    onDeteteItem(type, value.id);
+  _onDelete = (e) => {
+    const { onDeteteItem, value } = this.props;
+    onDeteteItem(value);
+  };
+
+  _onShowItem = () => {
+    const { value, onShowItem } = this.props;
+    onShowItem(value);
   };
 
   render() {
     const { value, index } = this.props;
-    console.log(value);
     return (
       <Draggable draggableId={value?.id} index={index}>
         {(provided, snapshot) => (
@@ -32,8 +36,11 @@ class Item extends Component {
               display="flex"
               alignItems="center"
               justifyContent="space-between"
+              borderLeft={`10px solid ${
+                ITEM_PRIORITIES[value?.priority].color
+              }`}
             >
-              <Text>{value?.title || ''} </Text>
+              <Text onClick={this._onShowItem}>{value?.title || ''} </Text>
               <IconButton onClick={this._onDelete} variant="link" mr="1rem">
                 <CloseIcon fontSize="12px" />
               </IconButton>

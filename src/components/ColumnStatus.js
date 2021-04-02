@@ -19,18 +19,19 @@ class ColumnStatus extends Component {
   };
 
   _onAdd = (value) => {
-    const { onAddItem, type, values } = this.props;
+    const { onAddItem, type } = this.props;
     if (!value.title) return;
     const submittedValue = {
       ...value,
-      id: `${type}_${values.length.toString()}`,
+      type,
+      id: `${type}_${Math.random()}`,
     };
-    onAddItem(type, submittedValue);
+    onAddItem(submittedValue);
     this.onClose();
   };
 
   render() {
-    const { type, text, values, onDeteteItem } = this.props;
+    const { type, text, values, onDeteteItem, onShowItem } = this.props;
     const { isAdding } = this.state;
     return (
       <Droppable droppableId={type}>
@@ -41,11 +42,17 @@ class ColumnStatus extends Component {
             p="1rem"
             borderRadius="10px"
             minHeight="100%"
+            overflowY="auto"
+            height="100%"
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
             ref={provided.innerRef}
-            bg={snapshot.isDraggingOver ? '#CBD5E0' : '#ebecf0'}
+            bg={
+              snapshot.isDraggingOver
+                ? 'rgba(203, 213, 224, 0.9)'
+                : 'rgba(235, 236, 240, 0.9)'
+            }
             {...provided.droppableProps}
           >
             <Box textAlign="center" mb="2rem" w="100%">
@@ -57,8 +64,8 @@ class ColumnStatus extends Component {
                   key={value.id}
                   index={index}
                   value={value}
-                  type={type}
                   onDeteteItem={onDeteteItem}
+                  onShowItem={onShowItem}
                 />
               ))}
             </Box>
@@ -69,6 +76,7 @@ class ColumnStatus extends Component {
                 w="100%"
                 p="1rem"
                 d="flex"
+                colorScheme="blue"
                 variant="outline"
                 alignItems="center"
                 justifyContent="center"
@@ -77,7 +85,6 @@ class ColumnStatus extends Component {
                 <AddIcon />
               </Button>
             )}
-            {provided.placeholder}
           </Box>
         )}
       </Droppable>
