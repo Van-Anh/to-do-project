@@ -27,7 +27,7 @@ npm run start
 
 4. Change task status by drag and drop
 
-![image](https://user-images.githubusercontent.com/75731329/113440475-b2823080-9416-11eb-9a9c-7017c9013d72.png)
+[![Image from Gyazo](https://i.gyazo.com/5796e21b5275c2f4947f64202a7ec9c8.gif)](https://gyazo.com/5796e21b5275c2f4947f64202a7ec9c8)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
