@@ -7,6 +7,7 @@ class Item extends Component {
   state = {};
 
   _onDelete = (e) => {
+    e.stopPropagation();
     const { onDeteteItem, value } = this.props;
     onDeteteItem(value);
   };
@@ -25,6 +26,7 @@ class Item extends Component {
             p="0.5rem 0.5rem"
             borderRadius="3px"
             ref={provided.innerRef}
+            onClick={this._onShowItem}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
@@ -40,8 +42,14 @@ class Item extends Component {
                 ITEM_PRIORITIES[value?.priority].color
               }`}
             >
-              <Text onClick={this._onShowItem}>{value?.title || ''} </Text>
-              <IconButton onClick={this._onDelete} variant="link" mr="1rem">
+              <Text>{value?.title || ''} </Text>
+              <IconButton
+                onClickCapture={this._onDelete}
+                variant="link"
+                mr="1rem"
+                width="40px"
+                height="40px"
+              >
                 <CloseIcon fontSize="12px" />
               </IconButton>
             </Box>
